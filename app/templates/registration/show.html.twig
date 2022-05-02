@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto">
+        <h1 class="text-center mb-5">Inscription de : {{ registration.firstname }} {{ registration.lastname }}</h1>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ registration.id }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ registration.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ registration.lastname }}</td>
+                </tr>
+                <tr>
+                    <th>Code Postal</th>
+                    <td>{{ registration.ZipCode }}</td>
+                </tr>
+                <tr>
+                    <th>Ville</th>
+                    <td>{{ registration.city }}</td>
+                </tr>
+                <tr>
+                    <th>Adresse</th>
+                    <td>{{ registration.address }}</td>
+                </tr>
+                <tr>
+                    <th>Ville de naissance</th>
+                    <td>{{ registration.CityBirth }}</td>
+                </tr>
+                <tr>
+                    <th>Date de naissance</th>
+                    <td>{{ registration.birthDate ? registration.birthDate|date('Y-m-d') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-block text-center mx-auto">
+            {{ include('registration/_delete_form.html.twig') }}
+            <a class="btn btn-secondary mt-3" href="{{ path('app_registration_edit', {'id': registration.id}) }}">Editer</a><br>
+            <a class="btn btn-primary mt-3" href="{{ path('app_registration_index') }}">Retourner à la liste</a>
+        </div>
+
+
+
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscriptions{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center mb-5">Liste des inscriptions</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Code Postal</th>
+                    <th>Ville</th>
+                    <th>Adresse</th>
+                    <th>Ville de naissance</th>
+                    <th>Date de naissance</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for registration in registrations %}
+                <tr>
+                    <td>{{ registration.id }}</td>
+                    <td>{{ registration.firstname }}</td>
+                    <td>{{ registration.lastname }}</td>
+                    <td>{{ registration.ZipCode }}</td>
+                    <td>{{ registration.city }}</td>
+                    <td>{{ registration.address }}</td>
+                    <td>{{ registration.CityBirth }}</td>
+                    <td>{{ registration.birthDate ? registration.birthDate|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('app_registration_show', {'id': registration.id}) }}">Voir</a>
+                        <a class="btn btn-secondary" href="{{ path('app_registration_edit', {'id': registration.id}) }}">Editer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="d-block text-center mx-auto">
+            <a class="btn btn-primary" href="{{ path('app_registration_new') }}">Nouveau</a>
+        </div>
+
+    </div>
+
+{% endblock %}

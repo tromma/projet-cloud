@@ -13,7 +13,7 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/mysql:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
   pma:
     image: phpmyadmin/phpmyadmin
     container_name: pma
@@ -33,7 +33,7 @@ services:
     ports:
       - '9000:9000'
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/app:/var/www/symfony_docker
+      - ./app:/var/www/symfony_docker
     depends_on:
       - database
       - pma
@@ -43,8 +43,8 @@ services:
     ports:
       - '8080:80'
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/app:/var/www/symfony_docker
-      - ${WEBAPP_STORAGE_HOME}/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./app:/var/www/symfony_docker
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
       - database
